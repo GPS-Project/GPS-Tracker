@@ -16,6 +16,6 @@ int main(void){
 		}}
 for(i=0;i<3;i++){
 	GPIO_PORTB_DATA_R=(GPIO_PORTB_DATA_R & 0x00)|(digit[i]&0x0F)|(1<<(4+i));
-	_delay_ms(1);
+	SysCtlDelay(10);
 }}
 }
