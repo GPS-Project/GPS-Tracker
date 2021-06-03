@@ -4,8 +4,6 @@
 int main(void){
 	int distance=657;
 	int digit[3],number,i;
-
-	DDRA |=0x7F;
 	PORTA =(PORTA & 0x00) | (PORTA | 0x70);
 	while(1){
 		i=0;
