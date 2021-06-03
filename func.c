@@ -1,4 +1,4 @@
-#include<stdint.h>
+GPIO_PORTB_DATA_R#include<stdint.h>
 #include"tm4c123gh6pm.h"
 
 int main(void){
@@ -15,7 +15,7 @@ int main(void){
 				i++;
 		}}
 for(i=0;i<3;i++){
-	PORTA=(PORTA & 0x00)|(digit[i]&0x0F)|(1<<(4+i));
+	GPIO_PORTB_DATA_R=(GPIO_PORTB_DATA_R & 0x00)|(digit[i]&0x0F)|(1<<(4+i));
 	_delay_ms(1);
 }}
 }
