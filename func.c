@@ -4,7 +4,7 @@
 int main(void){
 	int distance=657;
 	int digit[3],number,i;
-	PORTA =(PORTA & 0x00) | (PORTA | 0x70);
+	GPIO_PORTA_DATA_R =(GPIO_PORTA_DATA_R & 0x00) | (GPIO_PORTA_DATA_R | 0x70);
 	while(1){
 		i=0;
 		if(distance>=100){
