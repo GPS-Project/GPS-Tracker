@@ -15,8 +15,6 @@ int main(void){
 				i++;
 		}}
 for(i=0;i<3;i++){
-	//PORTB =(PORTB & 0xF8)| (1<<i);
-	//PORTA=(PORTA &0xF0)|digit[i];
 	PORTA=(PORTA & 0x00)|(digit[i]&0x0F)|(1<<(4+i));
 	_delay_ms(1);
 }}
