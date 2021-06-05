@@ -39,19 +39,10 @@ static double accdist=0.0;
     dist = acos(dist);
     dist = rad2deg(dist);
     dist = dist * 60 * 1.1515;
-		
-		accdist= accdist + dist;
-		
-    switch(unit) {
-      case 'M':
-        break;
-      case 'K':
-        dist = dist * 1.609344;
-        break;
-      case 'N':
-        dist = dist * 0.8684;
-        break;
-    }
+    dist = dist * 1.609344;
+    accdist= accdist + dist;
+	  
+	  
     return (accdist);
   }
 }
