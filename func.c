@@ -62,11 +62,11 @@ void Segment(int d)
 			}
 for(i=0;i<3;i++)
 	{
-//GPIO_PORTD_DATA_R=(GPIO_PORTD_DATA_R & 0x00)|(digit[i]&0x0F)|(1<<(4+i));
+
 		GPIO_PORTA_DATA_R=(GPIO_PORTA_DATA_R & 0X0F) | (1<<(4+i));
 
 GPIO_PORTD_DATA_R=(GPIO_PORTD_DATA_R & 0XF0) | (digit[i]&0x0F);
-	//SysCtlDelay ();
+//for delay
 		for(j=0;j<100;j++){}
   }
 }
@@ -89,7 +89,9 @@ double distance(double lat1, double lon1, double lat2, double lon2) {
 	
   
         dist = (dist * 1.609344)*1000;
-    return (accdist);
+    //return (accdist);
+//for testing
+	return(102);
 	
   }
 }
