@@ -2,7 +2,7 @@
 
 int main() {
 int d;	
-	while (1)
+while (1)
 {
 initialization();
 d=distance(30.5,30.9,32.5,32.2);
