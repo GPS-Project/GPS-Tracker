@@ -2,10 +2,10 @@
 void SystemInit(){}
 void initialization()
 	{
-		//SETTING CLK FOR A,F,B*
-		SYSCTL_RCGCGPIO_R |=0x29;
-		while ((SYSCTL_PRGPIO_R &0x29)==0){};
-		//*LED**
+		        //SETTING CLK FOR A,F,B*
+		        SYSCTL_RCGCGPIO_R |=0x29;
+		        while ((SYSCTL_PRGPIO_R &0x29)==0){};
+	         	//*LED**
 			GPIO_PORTF_LOCK_R = UNLOCK;
 			GPIO_PORTF_CR_R  |= RED; 
 			GPIO_PORTF_AMSEL_R&=(~RED);
@@ -36,12 +36,12 @@ void initialization()
 	}
 
 	
-	void LED(double d)
-		{
+void LED(double d)
+{
 	if(d>100)
-	
+	{
 		GPIO_PORTF_DATA_R |= RED;
-	
+	}
 	
 }
 void Segment(int d)
@@ -58,7 +58,7 @@ void Segment(int d)
 				digit[i]=number%10;
 				number=number/10;
 				i++;
-	    	}
+	                 	}
 			}
 for(i=0;i<3;i++)
 	{
@@ -68,11 +68,11 @@ for(i=0;i<3;i++)
                 GPIO_PORTD_DATA_R=(GPIO_PORTD_DATA_R & 0XF0) | (digit[i]&0x0F);
 //for delay
 		for(j=0;j<100;j++){}
-  }
+       }
 }
 double distance(double lat1, double lon1, double lat2, double lon2) {
- double theta, dist;
-	static double accdist=0.0;
+double theta, dist;
+static double accdist=0.0;
 	
   if ((lat1 == lat2) && (lon1 == lon2)) 
     return 0;
@@ -89,11 +89,11 @@ double distance(double lat1, double lon1, double lat2, double lon2) {
 	
   
         dist = (dist * 1.609344)*1000;
-    //return (accdist);
+        //return (accdist);
 //for testing
 	return(102);
 	
-  }
+       }
 }
 //  This function converts decimal degrees to radians    
 
