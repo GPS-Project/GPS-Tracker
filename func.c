@@ -1,7 +1,7 @@
 #include<stdint.h>
 #include"tm4c123gh6pm.h"
 
-int main(void){
+void segment(int d){
 	int distance=657;
 	int digit[3],number,i;
 	GPIO_PORTB_DATA_R =(GPIO_PORTB_DATA_R & 0x00) | (GPIO_PORTB_DATA_R | 0x70);
