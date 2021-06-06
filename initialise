@@ -12,3 +12,17 @@ void UART_init(void)  //UART2 RX D6 , TX D7
   GPIO_PORTD_AFSEL_R |=0xC0;  //enable alternate func on PD7-6           
   GPIO_PORTD_PCTL_R = (GPIO_PORTD_PCTL_R & 0x00FFFFFF)+0x11000000;
 }
+
+//wait for new input then returnn ASCII code
+uint8_t UART_InChar(void)
+{
+	while((UART2_FR_R & 0x0010)!=0);
+	    return ((uint8_t)(UART2_DR_R&0xFF));	
+}	
+
+//wait for buffer to be not full then output
+void UART_OutChar(uint8_t data)
+{
+	while ((UART2_FR_R & 0x0020)!=0);
+	    UART2_DR_R =data;
+}
