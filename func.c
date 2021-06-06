@@ -70,7 +70,7 @@ GPIO_PORTD_DATA_R=(GPIO_PORTD_DATA_R & 0XF0) | (digit[i]&0x0F);
 		for(j=0;j<100;j++){}
   }
 }
-double distance(double lat1, double lon1, double lat2, double lon2, char unit) {
+double distance(double lat1, double lon1, double lat2, double lon2) {
  double theta, dist;
 	static double accdist=0.0;
 	
