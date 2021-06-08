@@ -106,3 +106,7 @@ double rad2deg(double rad) {
   return (rad * 180 / pi);
 	
 }	
+void delay_1sec(void){
+       unsigned long i;   
+       for(i = 0; i <= 3000000; i++ ){};
+		}
