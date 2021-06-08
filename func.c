@@ -85,10 +85,10 @@ static double accdist=0.0;
     dist = acos(dist);
     dist = rad2deg(dist);
     dist = dist * 60 * 1.1515;
-		
-	
-  
-        dist = (dist * 1.609344)*1000;
+    dist = (dist * 1.609344)*1000;
+    accdist += dist;
+    &lat1=lat2;
+    &lon1=lon2;	
         //return (accdist);
 //for testing
 	return(102);
