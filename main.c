@@ -1,6 +1,5 @@
 #include"func.h"
 int flag=0;
-int prev_values [N];
 
 int main() {
 int d;	
