@@ -9,6 +9,7 @@
 #define N 2
 #include <math.h>
 #define pi 3.14159265358979323846
+int prev_values[N];
 void SystemInit();
 void initialization();
 void LED(double );
