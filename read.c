@@ -11,16 +11,22 @@ char uart_read (void){
    return data;
 }
 void readmsg (){
-
-	for (i=0;i<MAX;i++){
+while ((UART2_FR_R &0x10)!=0){
+	 data = (UART2_DR_R&0xFF);
+	if(data != '*'){
+	stringdata[i]=data;}
+	else
+		break;
+	}
+	
+	
+	
+	/*for (i=0;i<MAX;i++){
 	if (data == 'G'){
 		if (data =='P')
 			if (data =='R')
 				if (data=='M')
 					if(data =='C')
-					stringdata [i]=data;
+					stringdata [i]=data;*/
 	
-				}
-			}
-	}
 
