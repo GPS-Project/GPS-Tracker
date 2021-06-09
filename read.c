@@ -18,6 +18,7 @@ while ((UART2_FR_R &0x10)!=0){
 	else
 		break;
 	}
+}
 	
 	
 	
