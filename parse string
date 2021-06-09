@@ -1,0 +1,101 @@
+#include "stdint.h"
+#include "math.h"
+#define COMMA	  0x2C
+
+void SystemInit(void){}
+
+double latitude&longitude(){
+
+unsigned char  charRead;	     		/* char read from COM port */
+unsigned char  stringRead[100]; 		/* Buffer collects chars read from GPS */
+unsigned char  tempString[100];
+unsigned char  latitudeString[11];
+unsigned char  latitudeCardinalString[3];
+unsigned char  longitudeString[12];
+unsigned char  longitudeCardinalString[3];
+
+unsigned char  *pChar;
+unsigned char  dummyChar;
+
+unsigned  char lastCommaPosition;
+
+  float     	 latitude;
+  int	    	 latDegrees;
+  float	    	 latMinutes;
+
+  float 	 longitude;
+  int		 longDegrees;
+  float		 longMinutes;
+ 
+unsigned int   j, k;				/* dummy variable */
+unsigned int	 i;		     		/* Number of chars read per GPS message string */
+
+dummyChar = 'A'; pChar = &dummyChar;
+
+      j = 0;
+	  pChar = stringRead;
+	  while(*(pChar+j) != COMMA) {
+	       tempString[j] = *(pChar+j);
+	       j++;
+	  }
+	  tempString[j] = '\0';
+
+if(tempString[3] == 'R' && tempString[4] == 'M' && tempString[5] == 'C') {
+
+pChar = stringRead;
+  
+/* Get lattitude: ddmm.mmmm */
+	      pChar = stringRead;
+	      j = lastCommaPosition + 1;
+	      k = 0;
+	      while(*(pChar+j) != COMMA) {
+		   latitudeString[k] = *(pChar+j);
+		   j++;
+		   k++;
+	      }
+	      lastCommaPosition = j;
+	      latitudeString[k] = '\0';
+
+	      sscanf(latitudeString, "%f", &latitude);
+	      latDegrees = (int)(latitude/100);
+	      latMinutes = (float)(latitude - latDegrees*100);
+	      //printf("/t%02d DEG/t%2.4f MIN", latDegrees, latMinutes);
+
+	      /* Get lattitude Cardinal direction */
+	      pChar = stringRead;
+	      j = lastCommaPosition + 1;
+	      k = 0;
+	      while(*(pChar+j) != COMMA) {
+		   latitudeCardinalString[k] = *(pChar+j);
+		   j++;
+		   k++;
+	      }
+	      lastCommaPosition = j;
+	      latitudeCardinalString[k] = '\0';
+	      //printf(" %s", latitudeCardinalString);
+
+	      /* Get longitude: dddmm.mmmm */
+	      pChar = stringRead;
+	      j = lastCommaPosition + 1;
+	      k = 0;
+	      while(*(pChar+j) != COMMA) {
+		   longitudeString[k] = *(pChar+j);
+		   j++;
+		   k++;
+	      }
+	      lastCommaPosition = j;
+	      longitudeString[k] = '\0';
+
+	      sscanf(longitudeString, "%f", &longitude);
+	      longDegrees = (int)(longitude/100);
+	      longMinutes = (float)(longitude - longDegrees*100);
+		  }
+return longitude;
+return latitude;
+}
+
+int main(){
+	while(1){
+		latitude&longitude();
+  }
+}	  
