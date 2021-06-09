@@ -8,9 +8,9 @@ while ((UART2_FR_R &0x10)!=0){
 	 data = (UART2_DR_R&0xFF);
 	if(data != '*'){
 	stringdata[i]=data;}
-	else
+	else{
 		break;
-	}
+	}}
 }
 int main (void){
 //yt7at fl main
