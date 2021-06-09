@@ -4,13 +4,15 @@ unsigned char data ;
 unsigned int i;
 unsigned char stringdata [MAX];
 void readmsg (){
+int i=0;
 while ((UART2_FR_R &0x10)!=0){
 	 data = (UART2_DR_R&0xFF);
 	if(data != '*'){
 	stringdata[i]=data;}
 	else{
 		break;
-	}}
+	}
+	i++;}
 }
 int main (void){
 //yt7at fl main
