@@ -3,7 +3,6 @@
 #define MAX 100 //max number of characters recieved ftom gps module
 unsigned char data ;
 unsigned int i;
-bool stop= false;
 unsigned char stringdata [MAX];
 char uart_read (void){
 	while ((UART2_FR_R &0x10)!=0){
@@ -13,13 +12,15 @@ char uart_read (void){
 }
 void readmsg (){
 
-	do{
-	if (data == '$'){
-		
-	}
+	for (i=0;i<MAX;i++){
+	if (data == 'G'){
+		if (data =='P')
+			if (data =='R')
+				if (data=='M')
+					if(data =='C')
+					stringdata [i]=data;
 	
+				}
+			}
 	}
-	
-while (1);
 
-	}
