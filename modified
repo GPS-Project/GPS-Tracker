@@ -1,0 +1,24 @@
+#include "tm4c123gh6pm.h"
+#include <stdbool.h>
+#define MAX 100 //max number of characters recieved ftom gps module
+unsigned char data ;
+unsigned int i;
+unsigned char stringdata [MAX];
+void uart_read (void){
+	int i;
+	for(i=0;i<MAX;i++){
+	while ((UART2_FR_R &0x10)!=0){
+	 data = UART2_DR_R&0xFF;
+	}if(data != '*'){
+	stringdata[i]=data;}
+	else{break;}
+	}
+}
+int main (void){
+//yt7at fl main
+if(stringdata[3]=='R'){
+//parsing func}
+}else{
+	//uart_read func}
+	}
+}
