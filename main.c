@@ -2,12 +2,13 @@
 int flag=0;
 
 int main() {
-int d;	
+int d;
+char recieve;
 initialization();
 while (1)
 {
 	delay_1sec();
-	//read function
+	recieve=UART0_write(UART1_read());
 	//trimmed func
 	if(flag==0){
 	
