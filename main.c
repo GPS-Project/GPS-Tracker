@@ -13,12 +13,13 @@ while (1)
 	gps(UART0_DR_R);
 	if(flag==0){
 	
-		prevA=lat;
-		prevB=lg;
+		prevA=latitude(lat);
+		prevB =longitude(lg);
 		flag=1;}
 	else if(flag==1){
-		A=lat;
-		B=lg;
+		double A,B;
+		A =latitude(lat);
+		B =longitude(lg);
 	d=distance(prevA,prevB,A,B)}
 		if(d==-1){
 		skip;}
