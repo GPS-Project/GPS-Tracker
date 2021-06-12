@@ -11,6 +11,8 @@
 #define pi 3.14159265358979323846
 double*prev1;
 double* prev2;
+char lat[20];                      // latitude array
+char lg[20];
 void SystemInit();
 void initialization();
 void LED(double );
