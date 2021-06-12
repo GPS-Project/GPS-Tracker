@@ -89,9 +89,11 @@ static double accdist=0.0;
     accdist += dist;
     prev_values[0]=lat2;
     prev_values[1]=lon2;	
-        //return (accdist);
+    *prev1=lat2;
+    *prev2=lon2;
+	  return (accdist);
 //for testing
-	return(102);
+	//return(102);
 	
        }
 }
