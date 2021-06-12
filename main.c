@@ -3,19 +3,20 @@ int flag=0;
 
 int main() {
 int d;
-char recieve;
 initialization();
+	//uart init
 while (1)
 {
 	delay_1sec();
-	recieve=UART0_write(UART1_read());
-	//trimmed func
+	UART0_write(UART1_read());
+	gps(UART0_DR_R);
 	if(flag==0){
 	
-		//prev_values
+		*prev1=lat;
+		*prev2=lg;
 		flag=1;}
 	else if(flag==1){
-	//d=distance(prev_values[0],prev_values[1],,)}
+	d=distance(*prev1,*prev2,(double)lat,(double)lg)}
 		if(d==-1){
 		skip;}
 		else { led(d);
