@@ -4,7 +4,8 @@ int flag=0;
 int main() {
 int d;
 initialization();
-	//uart init
+UART0_Init();
+UART1_Init();
 while (1)
 {
 	delay_1sec();
