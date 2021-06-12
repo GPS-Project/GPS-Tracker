@@ -1,3 +1,4 @@
+#include "stdlib.h"
 #include "stdint.h"
 #include "C:/Keil/EE319KwareSpring2021/inc/tm4c123gh6pm.h"
 
@@ -9,8 +10,8 @@
 #define N 2
 #include <math.h>
 #define pi 3.14159265358979323846
-double*prev1;
-double* prev2;
+double prevA;
+double prevB;
 char lat[20];                      // latitude array
 char lg[20];
 void SystemInit();
@@ -27,3 +28,5 @@ void UART0_write(char c);
 char UART0_read(void);
 void UART0_Init(void);
 void gps();
+double longitude(char[]);
+double latitude(char[]);
