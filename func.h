@@ -19,3 +19,8 @@ double deg2rad(double);
 double rad2deg(double);
 double distance(double , double , double , double );
 void delay_1sec(void);
+char UART1_read(void);
+void UART1_Init(void);
+void UART0_write(char c);
+char UART0_read(void);
+void UART0_Init(void);
