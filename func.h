@@ -24,3 +24,4 @@ void UART1_Init(void);
 void UART0_write(char c);
 char UART0_read(void);
 void UART0_Init(void);
+void gps();
