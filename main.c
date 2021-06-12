@@ -13,15 +13,18 @@ while (1)
 	gps(UART0_DR_R);
 	if(flag==0){
 	
-		*prev1=lat;
-		*prev2=lg;
+		prevA=lat;
+		prevB=lg;
 		flag=1;}
 	else if(flag==1){
-	d=distance(*prev1,*prev2,(double)lat,(double)lg)}
+		A=lat;
+		B=lg;
+	d=distance(prevA,prevB,A,B)}
 		if(d==-1){
 		skip;}
-		else { led(d);
-		      segment(d);}
+		else { 
+		      LED(d);
+		      Segment(d);}
 		if(d>100){
 		break;}
 }
