@@ -82,3 +82,96 @@ double p1,p2;
 			//long secs
 			secsB=(p2-(int)p2)*60;
 }
+
+char UART1_read(void){
+    while((UART1_FR_R & 0x10) == 0x10);
+    return (char)UART1_DR_R & 0xFF;
+}
+void gps(){
+
+unsigned char Gpsdata;             // for incoming serial data
+unsigned int finish =0;             // indicate end of message
+unsigned int pos_cnt=0;             // position counter
+unsigned int lat_cnt=0;             // latitude data counter
+unsigned int log_cnt=0;             // longitude data counter
+unsigned int flg    =0;             // GPS flag
+unsigned int com_cnt=0;            // comma counter
+double p1,p2;
+		
+    while(finish==0){
+			
+		Gpsdata= UART1_read();
+		flg = 1;
+	  
+		if( Gpsdata == '$' && pos_cnt==0){
+			pos_cnt=1;
+		}
+		else if( Gpsdata=='G' && pos_cnt==1){
+			pos_cnt=2;
+		}
+		else if( Gpsdata=='P' && pos_cnt==2){
+			pos_cnt=3;
+		}
+		else if( Gpsdata=='R' && pos_cnt==3){
+			pos_cnt=4;
+		}
+		else if( Gpsdata=='M' && pos_cnt==4){
+			pos_cnt=5;
+		}
+		else if( Gpsdata=='C' && pos_cnt==5){
+			pos_cnt=6;
+		}
+		else if( (Gpsdata==',')&& (pos_cnt==6)){
+			com_cnt++;
+      flg=0;
+		}
+		 else if(com_cnt==3 && flg==1){
+        lat[lat_cnt++] =  Gpsdata;         // latitude
+        flg=0;
+       }
+
+       else if(com_cnt==5 && flg==1){
+         lg[log_cnt++] =  Gpsdata;         // Longitude
+         flg=0;
+       }
+
+       else if( Gpsdata == '*' && com_cnt >= 5 && flg == 1){
+         lat[lat_cnt] ='\0';             // end of GPRMC message
+         lg[log_cnt]  = '\0';
+         
+				 com_cnt = 0;                      // end of GPRMC message
+         lat_cnt = 0;
+         log_cnt = 0;
+         flg     = 0;
+         finish  = 1;
+
+      }
+    //else{finish=1;
+			}
+
+  finish = 0;
+  pos_cnt = 0;
+	p1= atof(lat);
+  p2= atof(lg);
+  //lat degree
+	degreeA=((int)p1-((int)p1%100))/100;
+			
+	//long degree
+	degreeB=((int)p2-((int)p2%100))/100;
+//lat mins
+	minA=p1-((int)p1-((int)p1%100));
+			//long mins
+			minB=p2-((int)p2-((int)p2%100));
+			//lat secs
+			secsA=(p1-(int)p1)*60;
+			//long secs
+			secsB=(p2-(int)p2)*60;
+}
+//latitude conversion
+double ConvertA(double degree ,double mins,double secs)
+{return degree+(mins/60)+(secs/3600);
+}
+//long conversion
+double ConvertB(double degree ,double mins,double secs)
+{return degree+(mins/60)+(secs/3600);
+}
