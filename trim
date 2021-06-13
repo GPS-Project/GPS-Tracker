@@ -175,3 +175,12 @@ double ConvertA(double degree ,double mins,double secs)
 double ConvertB(double degree ,double mins,double secs)
 {return degree+(mins/60)+(secs/3600);
 }
+
+int main(){
+while(1){
+double A,B;
+A =ConvertA(degreeA,minA,secsA);
+B =ConvertB(degreeB,minB,secsB);
+d=distance(prevA,prevB,A,B);
+}
+}
