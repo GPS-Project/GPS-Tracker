@@ -6,13 +6,8 @@ unsigned char  charRead;	     		/* char read from COM port */
 unsigned char  stringdata[100]; 		/* Buffer collects chars read from GPS */
 unsigned char  tempString[100];
 unsigned char  latitudeString[11];
-//unsigned char  latitudeCardinalString[3];
 unsigned char  longitudeString[12];
-//unsigned char  longitudeCardinalString[3];
-
 unsigned char  *pChar;
-//unsigned char  dummyChar;
-
 unsigned  char lastCommaPosition;
 
   float latitude;
@@ -30,9 +25,6 @@ float latitude_longitude(char arr[], int size){
 
  
 unsigned int   j, k;				/* dummy variable */
-//unsigned int	 i;		     		/* Number of chars read per GPS message string */
-
-//dummyChar = 'A'; pChar = &dummyChar;
 
       j = 0;
 	  pChar = stringdata;
@@ -63,19 +55,6 @@ if(tempString[3] == 'R' && tempString[4] == 'M' && tempString[5] == 'C') {
 	      latMinutes = (float)((latitude - latDegrees*100)/60);
 			  latitude = latDegrees + latMinutes;
 	      //printf("/t%02d DEG/t%2.4f MIN", latDegrees, latMinutes);
-
-//	      /* Get lattitude Cardinal direction */
-//	      pChar = stringRead;
-//	      j = lastCommaPosition + 1;
-//	      k = 0;
-//	      while(*(pChar+j) != COMMA) {
-//		    latitudeCardinalString[k] = *(pChar+j);
-//		    j++;
-//		    k++;
-//	      }
-//	      lastCommaPosition = j;
-//	      latitudeCardinalString[k] = '\0';
-//	      //printf(" %s", latitudeCardinalString);
 
 	      /* Get longitude: dddmm.mmmm */
 	      pChar = stringdata;
