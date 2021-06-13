@@ -75,7 +75,7 @@ double theta, dist;
 static double accdist=0.0;
 	
   if ((lat1 == lat2) && (lon1 == lon2)) 
-    return 0;
+    return -1;
   
   else {
 		
@@ -88,8 +88,8 @@ static double accdist=0.0;
     dist = (dist * 1.609344)*1000;
     accdist += dist;
 	  
-    *prev1=lat2;
-    *prev2=lon2;
+    prevA=lat2;
+    prevB=lon2;
 	  return (accdist);
 //for testing
 	//return(102);
@@ -176,7 +176,7 @@ unsigned int com_cnt=0;            // comma counter
 		
     while(finish==0){
 			
-		Gpsdata = UART0_DR_R;	
+		Gpsdata = UART1_read();	
 		flg = 1;
 	
 		if( Gpsdata == '$' && pos_cnt==0){
@@ -231,7 +231,6 @@ unsigned int com_cnt=0;            // comma counter
 double latitude(char lat[]) //starteted
 {
 	 int i;
-	 char *str;
 	 double p1,p2;
 	 char k[2],n[10];
 	 for(i=0; i<2;i++){
@@ -241,8 +240,8 @@ double latitude(char lat[]) //starteted
 	 k[i-2]=lat[i];
 	 }
 	 
-	 p1=strtod(k,&str);
-	 p2=strtod(n,&str);
+	 p1=atof(k);
+	 p2=atof(n);
 	 p2/=60;
 	 return p1+p2;
 }
@@ -250,18 +249,17 @@ double latitude(char lat[]) //starteted
 double longitude(char lg[])
 {
 	 int i;
-	 char *str;
 	 double p1,p2;
-	 char k[2],n[10];
-	 for(i=0; i<2;i++){
+	 char k[3],n[10];
+	 for(i=0; i<3;i++){
 	 k[i]=lat[i];
 	 }
-	 for(i=2; i<12;i++){
-	 k[i-2]=lat[i];
+	 for(i=3; i<13;i++){
+	 k[i-3]=lat[i];
 	 }
 	 
-	 p1=strtod(k,&str);
-	 p2=strtod(n,&str);
+	 p1=atof(k);
+	 p2=atof(n)
 	 p2/=60;
 	 return p1+p2;
 	 
