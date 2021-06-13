@@ -56,3 +56,9 @@ char UART1_read(void){
     while((UART1_FR_R & 0x10) == 0x10);
     return UART1_DR_R & 0xFF;
 }
+int main(){
+  UART0_Init();
+  UART1_Init();
+	
+  while(1) UART0_write(UART1_read());
+}
