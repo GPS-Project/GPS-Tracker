@@ -9,8 +9,7 @@ UART1_Init();
 while (1)
 {
 	delay_1sec();
-	UART0_write(UART1_read());
-	gps(UART0_DR_R);
+	gps();
 	if(flag==0){
 	
 		prevA=latitude(lat);
