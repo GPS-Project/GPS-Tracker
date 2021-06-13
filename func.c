@@ -228,3 +228,41 @@ unsigned int com_cnt=0;            // comma counter
    pos_cnt = 0;
 	 
 }
+double latitude(char lat[]) //starteted
+{
+	 int i;
+	 char *str;
+	 double p1,p2;
+	 char k[2],n[10];
+	 for(i=0; i<2;i++){
+	 k[i]=lat[i];
+	 }
+	 for(i=2; i<12;i++){
+	 k[i-2]=lat[i];
+	 }
+	 
+	 p1=strtod(k,&str);
+	 p2=strtod(n,&str);
+	 p2/=60;
+	 return p1+p2;
+}
+
+double longitude(char lg[])
+{
+	 int i;
+	 char *str;
+	 double p1,p2;
+	 char k[2],n[10];
+	 for(i=0; i<2;i++){
+	 k[i]=lat[i];
+	 }
+	 for(i=2; i<12;i++){
+	 k[i-2]=lat[i];
+	 }
+	 
+	 p1=strtod(k,&str);
+	 p2=strtod(n,&str);
+	 p2/=60;
+	 return p1+p2;
+	 
+}
