@@ -1,3 +1,5 @@
+#include "function.h"
+
 double degreeA;
 double degreeB;
 double minA;
