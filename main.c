@@ -19,12 +19,12 @@ while (1)
 		double A,B;
 		A =latitude(lat);
 		B =longitude(lg);
-	d=distance(prevA,prevB,A,B)}
+	d=distance(prevA,prevB,A,B);
 		if(d==-1){
-		skip;}
+		continue;}
 		else { 
 		      LED(d);
-		      Segment(d);}
+		      Segment(d);}}
 		if(d>100){
 		break;}
 }
