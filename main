@@ -23,12 +23,12 @@ while (1)
 		double A,B;
     A =ConvertA(degreeA,minA,secsA);
     B =ConvertB(degreeB,minB,secsB);
-    d=distance(prevA,prevB,A,B);}
+    d=distance(prevA,prevB,A,B);
 		if(d==-1){
 		continue;}
 		else { 
 			LED(d);
-		  Segment(d);}
+		  Segment(d);}}
 		if(d>100){
 		break;}
 }
