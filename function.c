@@ -66,7 +66,8 @@ for(i=0;i<3;i++)
 		GPIO_PORTA_DATA_R=(GPIO_PORTA_DATA_R & 0X0F) | (1<<(4+i));
 
                 GPIO_PORTD_DATA_R=(GPIO_PORTD_DATA_R & 0XF0) | (digit[i]&0x0F);
-//for delay
+                
+		//for delay
 		for(j=0;j<100;j++){}
        }
 }
@@ -89,9 +90,9 @@ static double accdist=0.0;
     accdist += dist;
     prevA=lat2;
     prevB=lon2;
-	  return (accdist);
+    return (accdist);
 //for testing
-	//return(102);
+//return(102);
 	
        }
 }
@@ -140,9 +141,9 @@ void UART1_Init(void){
     SYSCTL_RCGCUART_R |= 0x02;
     while((SYSCTL_PRUART_R & 0x02) == 0);
     SYSCTL_RCGCGPIO_R |= 0x02;
-		while((SYSCTL_PRGPIO_R & 0x02) == 0);
+    while((SYSCTL_PRGPIO_R & 0x02) == 0);
 	
-	  GPIO_PORTB_CR_R |= 0x1F;
+    GPIO_PORTB_CR_R |= 0x1F;
     GPIO_PORTB_AMSEL_R &= ~0x1F;
     GPIO_PORTB_AFSEL_R |= 0x03;
     GPIO_PORTB_PCTL_R = (GPIO_PORTB_PCTL_R & ~0xFF) | (GPIO_PCTL_PB0_U1RX | GPIO_PCTL_PB1_U1TX);
@@ -166,11 +167,7 @@ char UART1_read(void){
 	  gps();
 }
 
-/*char UART1_read(void){
-    while((UART1_FR_R & 0x10) == 0x10);
-    return (char)UART1_DR_R & 0xFF;
-}
-*/
+
 double degreeA;
 double degreeB;
 double minA;
@@ -214,49 +211,47 @@ double p1,p2;
 		}
 		else if( (Gpsdata==',')&& (pos_cnt==6)){
 			com_cnt++;
-      flg=0;
+                        flg=0;
 		}
-		 else if(com_cnt==3 && flg==1){
-        lat[lat_cnt++] =  Gpsdata;         // latitude
-        flg=0;
-       }
+		else if(com_cnt==3 && flg==1){
+                lat[lat_cnt++] =  Gpsdata;         // latitude
+                flg=0;
+                }
 
-       else if(com_cnt==5 && flg==1){
-         lg[log_cnt++] =  Gpsdata;         // Longitude
-         flg=0;
-       }
+                else if(com_cnt==5 && flg==1){
+                lg[log_cnt++] =  Gpsdata;         // Longitude
+                flg=0;
+                }
 
-       else if( Gpsdata == '*' && com_cnt >= 5 && flg == 1){
-         lat[lat_cnt] ='\0';             // end of GPRMC message
-         lg[log_cnt]  = '\0';
+                else if( Gpsdata == '*' && com_cnt >= 5 && flg == 1){
+                lat[lat_cnt] ='\0';             // end of GPRMC message
+                lg[log_cnt]  = '\0';
          
-				 com_cnt = 0;                      // end of GPRMC message
+	 com_cnt = 0;                      // end of GPRMC message
          lat_cnt = 0;
          log_cnt = 0;
          flg     = 0;
          finish  = 1;
 
-      }
-    //else{finish=1;
-			}
+      }	}
 
   finish = 0;
   pos_cnt = 0;
-	p1= atof(lat);
+  p1= atof(lat);
   p2= atof(lg);
       
-			//lat degree
+            //lat degree
 	    degreeA=((int)p1-((int)p1%100))/100;
 	    //long degree
 	    degreeB=((int)p2-((int)p2%100))/100;
-      //lat mins
+            //lat mins
 	    minA=p1-((int)p1-((int)p1%100));
-			//long mins
-			minB=p2-((int)p2-((int)p2%100));
-			//lat secs
-			secsA=(p1-(int)p1)*60;
-			//long secs
-			secsB=(p2-(int)p2)*60;
+  	    //long mins
+	    minB=p2-((int)p2-((int)p2%100));
+	    //lat secs
+	    secsA=(p1-(int)p1)*60;
+	    //long secs
+	    secsB=(p2-(int)p2)*60;
 }
 //latitude conversion
 double ConvertA(double degree ,double mins,double secs)
