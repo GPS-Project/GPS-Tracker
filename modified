@@ -4,7 +4,7 @@ char UART0_read(void){
     while((UART0_FR_R&0x10) == 0x10);
     return UART0_DR_R & 0xFF;
 }
-}
+
 /*int main (void){
 //yt7at fl main
 if(stringdata[3]=='R'){
