@@ -1,24 +1,15 @@
 #include "C:/Users/El.Takwa/Desktop/proj/tm4c123gh6pm.h"
-#define MAX 100 //max number of characters recieved ftom gps module
-unsigned char data ;
-unsigned int i;
-unsigned char stringdata [MAX];
-void readmsg (){
-int i=0;
-while ((UART2_FR_R &0x10)!=0){
-	 data = (UART2_DR_R&0xFF);
-	if(data != '*'){
-	stringdata[i]=data;}
-	else{
-		break;
-	}
-	i++;}
+
+char UART0_read(void){
+    while((UART0_FR_R&0x10) == 0x10);
+    return UART0_DR_R & 0xFF;
 }
-int main (void){
+}
+/*int main (void){
 //yt7at fl main
 if(stringdata[3]=='R'){
 //parsing func}
 }else{
 	//uart_read func}
 	}
-}
+}*/
