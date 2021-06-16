@@ -1,0 +1,81 @@
+//The following code displays the taken route of the gps on google maps
+
+
+// this code is to copy the output coordinate of the destination point
+
+#include <windows.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main ()
+{
+	OpenClipboard(0);
+	EmptyClipboard();
+	const char* op = "30.1141224,31.6";
+	const size_t ln = strlen(op) + 1;
+	HGLOBAL h = GlobalAlloc(GMEM_MOVEABLE, ln);
+	memcpy(GlobalLock(h), op, ln);
+	GlobalUnlock(h);
+	SetClipboardData(CF_TEXT, h);
+	CloseClipboard();
+	getch();
+	while (1)
+	{
+		system("cls");
+		OpenClipboard(0);
+		HANDLE in = GetClipboardData(CF_TEXT); 
+		cout<<(char*)in<<endl;
+		CloseClipboard();
+	}
+}
+
+
+
+
+# This code is used to automate google maps and displays the the route taken between 2 points 
+# the code accesses the copied output in the clipboard then stores it in a string, 
+# and plots the coordinates found in that string on google maps
+# code is written in PYTHON
+
+import webbrowser
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+import keyboard
+import pyautogui
+import win32clipboard
+
+PATH ="C:\Program Files (x86)\chromedriver.exe"
+driver = webdriver.Chrome(PATH)
+
+# assign url in the webdriver object
+driver = webdriver.Chrome(PATH)
+driver.get("https://www.google.co.in/maps/@10.8091781,78.2885026,7z")
+
+
+time.sleep(5)
+
+#startpoint='30.1141224,31.4'
+
+directionsB= driver.find_element_by_xpath('//*[@id="searchbox-directions"]')
+directionsB.click()
+
+time.sleep(10)
+
+start ='30.1141224,31.4'
+
+# to get the destination point coordinates from Keil 
+win32clipboard.OpenClipboard()
+end = win32clipboard.GetClipboardData()
+win32clipboard.CloseClipboard()
+
+
+pyautogui.write(start)
+time.sleep(5)
+pyautogui.press('enter')
+time.sleep(3)
+pyautogui.write(end)
+time.sleep(3)
+pyautogui.press('enter')
